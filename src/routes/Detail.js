@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import styled from 'styled-components'
+import { Nav } from "react-bootstrap"
 
 let YellowBtn = styled.button`
   background : ${props => props.bg};
@@ -15,6 +16,7 @@ const Details = (props) => {
   let [count, setCount] = useState(0);
   let [box, setBox] = useState(true);
   let [search, setSearch] = useState('');
+  let [tab, setTab] = useState(0);
 
   useEffect(() => {
     const timeOut = setTimeout(() => {setBox(false)}, 2000);
@@ -50,9 +52,7 @@ const Details = (props) => {
           </div>
           : null
       }
-      
-      {count}
-      <YellowBtn bg="blue" onClick={() => {setCount(count + 1)}}>버튼</YellowBtn>
+      {/* <YellowBtn bg="blue" onClick={() => {setCount(count + 1)}}>버튼</YellowBtn> */}
       <div className="row">
         <div className="col-md-6">
           <img src={`https://codingapple1.github.io/shop/shoes` + (findItem.id + 1)+ `.jpg`}width="100%" />
@@ -68,8 +68,27 @@ const Details = (props) => {
         </div>
       </div>
     </div>
+                          {/* 페이지가 렌더링 될때 제일 먼저 선택되어있음 */}
+    <Nav variant="tabs"  defaultActiveKey="link0">
+      <Nav.Item>
+        <Nav.Link eventKey="link0" onClick={() => {setTab(0)}}>버튼0</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link1" onClick={() => {setTab(1)}}>버튼1</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link2" onClick={() => {setTab(2)}}>버튼2</Nav.Link>
+      </Nav.Item>
+    </Nav>
+    
+    <TabContent tab={tab}/>
     </>
   )
+}
+
+const TabContent = (props) => {
+  
+  return [<div>상품정보</div>, <div>디자인</div>, <div>후기</div>][props.tab]
 }
 
 export default Details
