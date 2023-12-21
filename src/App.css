@@ -3,3 +3,17 @@
   background-image : url('/public/bg.png');
   background-position : center;
 }
+
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.endMotion {
+  opacity: 0;
+  transition: 0.5s;
+}

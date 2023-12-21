@@ -1,12 +1,18 @@
 import {Button, Navbar, Container, Nav} from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import data from './data.js';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import Details from './routes/Detail.js';
 import Card from './components/Card.js';
 import axios from 'axios';
+import { useEffect } from 'react';
+
+// state 보관함
+export let Context1 = createContext();
+
+
 
 function App() {
 
@@ -14,8 +20,7 @@ function App() {
   let navigate = useNavigate();
   let [count, setCount] = useState(0);
   let [visible, setVisible] = useState(false);
-
-
+  let [item, setItem] = useState([10,11,12]);
 
   return (
     <div className="App">
@@ -36,7 +41,11 @@ function App() {
         </Container>
       </Navbar>
       <Routes>
-        <Route path='/detail/:id' element={<Details shoes={shoes}></Details>}></Route>
+        <Route path='/detail/:id' element={
+        <Context1.Provider value={{item}}>
+          <Details shoes={shoes}></Details>
+        </Context1.Provider>
+        }></Route>
         <Route path='/about' element={<About></About>}>
           {/* nested routes */}
           <Route path='member' element={<div>멤버임</div>}></Route>
