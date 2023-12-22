@@ -8,6 +8,7 @@ import Details from './routes/Detail.js';
 import Card from './components/Card.js';
 import axios from 'axios';
 import { useEffect } from 'react';
+import Cart from './routes/Cart.js'
 
 // state 보관함
 export let Context1 = createContext();
@@ -102,6 +103,8 @@ function App() {
           }}>더보기</button> : null}
           </>
         }></Route>
+
+        <Route path="/cart" element={<Cart></Cart>}></Route>
       </Routes>
     
       
