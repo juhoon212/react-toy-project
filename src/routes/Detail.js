@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import styled from 'styled-components'
 import { Nav } from "react-bootstrap"
-import { propTypes } from "react-bootstrap/esm/Image"
 import '../App.css'
 import {Context1} from '../App.js'
 
@@ -54,7 +53,7 @@ const Details = (props) => {
   {/* 컴포넌트 마운트 시 1회만 실행 , mount시 실행안됨, unmount시 실행됨*/}
 
   useEffect(() => {
-    if(isNaN(search) == true) {
+    if(isNaN(search) === true) {
       alert('그러지마세요');  
     }
   }, [search])
@@ -82,7 +81,7 @@ const Details = (props) => {
     <>
     <div className={`container start ${detailFade}`}>
       {
-          box == true ? 
+          box === true ?
           <div className={`alert alert-warning start ${warnFade}`}>
             {`${count}초 이내 구매 시 할인`}
           </div>
@@ -91,7 +90,7 @@ const Details = (props) => {
       {/* <YellowBtn bg="blue" onClick={() => {setCount(count + 1)}}>버튼</YellowBtn> */}
       <div className="row">
         <div className="col-md-6">
-          <img src={`https://codingapple1.github.io/shop/shoes` + (findItem.id + 1)+ `.jpg`}width="100%" />
+          <img src={`https://codingapple1.github.io/shop/shoes` + (findItem.id + 1)+ `.jpg`} width="100%" />
       </div>
         <div className="col-md-6">
           <input onChange={(e) => {
